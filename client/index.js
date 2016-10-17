@@ -1,5 +1,5 @@
 //Create new component. This component will produce some HTML
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search'
 import SearchBar from './components/search_bar.js'
@@ -11,12 +11,14 @@ YTSearch({key:API_KEY, term: "Solange"}, function(data) {
 })
 // Use this key in your application by passing it with the key=API_KEY parameter.
 
-const App = () => {
-  return (
-    <div>
-      <SearchBar />
-    </div>
-    );
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <SearchBar />
+      </div>
+      );
+  }
 }
 
 //Take this component generate html and put it in the DOM
