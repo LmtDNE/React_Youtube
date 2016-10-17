@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search'
 import SearchBar from './components/search_bar.js'
 import VideoList from './components/video_list'
+import VideoDetail from './components/video_detail'
 import Private from '../private'
 
 
@@ -14,18 +15,21 @@ class App extends Component {
 
     this.state = { 
       videos: [],
+      selectedVideo: null
     }
 
     YTSearch({key:Private.API_KEY, term: "Solange"}, (videos) => {
       console.log(videos)
-      this.setState({ videos })
-      //this.setState({ videos:videos });
+      this.setState({ 
+        videos:videos,
+        selectedVideo: videos[0] })
     })
   }
   render() {
     return (
       <div>
         <SearchBar />
+        <VideoDetail video={this.state.selectedVideo}/>
         <VideoList videos={this.state.videos}/>
       </div>
       );
